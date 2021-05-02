@@ -1,0 +1,39 @@
+.menu {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #0000ff91;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+hr {
+  margin-bottom: 30px;
+}
+
+.menu__container {
+  padding: 0 20px;
+  list-style: none;
+}
+
+.menu__container li {
+  margin: 25px 0;
+  align-items: center;
+  display: flex;
+  font-size: 1rem;
+}
+
+.menu__container li p {
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+.menu__container li i {
+  font-size: 2rem;
+  width: 25px;
+}
