@@ -23,9 +23,14 @@ hr {
 
 .menu__container li {
   margin: 25px 0;
-  align-items: center;
-  display: flex;
   font-size: 1rem;
+}
+
+.menu__container li a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
 }
 
 .menu__container li p {
