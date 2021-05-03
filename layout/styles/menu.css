@@ -1,3 +1,39 @@
+/* Menu up */
+:root {
+  --bg-sections: #fffffd;
+  --border-sections: #efeef1;
+  --gray: #8a8a8c;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background-color: var(--bg-sections);
+  border: 1px solid var(--border-sections);
+  color: var(--gray);
+}
+
+h2 {
+  padding-left: 20px;
+  font-size: 1.7rem;
+}
+
+.top-menu {
+  display: flex;
+  list-style: none;
+  height: 55px;
+}
+
+.top-menu__item {
+  padding: 0 25px;
+  display: flex;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+/* Menu left */
 .menu {
   width: 200px;
   height: 100%;

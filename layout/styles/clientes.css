@@ -1,11 +1,4 @@
-:root {
-  --bg-sections: #fffffd;
-  --border-sections: #efeef1;
-  --gray: #8a8a8c;
-}
-
 /* SEARCH */
-
 .search {
   margin: 0 20px;
   padding: 15px;
@@ -41,28 +34,27 @@ button {
   border-radius: 5px;
 }
 
-/* CONTACTS */
-
-.contacts {
+/* CLIENTS */
+.clients {
   margin: 20px;
   background-color: var(--bg-sections);
   border: 1px solid var(--border-sections);
 }
 
-.contacts__table {
+.clients__table {
   padding: 20px 10px 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 2fr 0.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 2fr 0.5fr 0.5fr;
 }
 
-.contacts__table--column {
+.clients__table--column {
   display: grid;
   grid-template-rows: 30px;
   grid-auto-rows: 45px;
   font-size: 1.2rem;
 }
 
-.contacts__table--column div {
+.clients__table--column div {
   border-top: 0.5px solid #d9d9da;
   display: flex;
   align-items: center;
