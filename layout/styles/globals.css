@@ -9,7 +9,10 @@ html {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+  background-color: #f4f8f8;
+}
+
 .menu-separator {
   padding-left: 200px;
-  background-color: #f4f8f8;
 }

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/contactos_agregar.css" />
+    <link rel="stylesheet" href="./styles/menu.css" />
+    <script
+      src="https://kit.fontawesome.com/473d269aa9.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Nuevo contacto</title>
+  </head>
+  <body>
+    <div class="menu-separator">
+      <header>
+        <h2>Directorio</h2>
+        <nav>
+          <ul class="top-menu">
+            <li class="top-menu__item">Directorio</li>
+            <li class="top-menu__item">Clientes</li>
+            <li class="top-menu__item">Documentos</li>
+            <li class="top-menu__item">Pedidos de servicio</li>
+            <li class="top-menu__item">Salir</li>
+          </ul>
+        </nav>
+      </header>
+      <section class="add">
+        <h3>AGREGAR UN NUEVO CONTACTO</h3>
+        <form action="">
+          <label for="firstName">
+            <p>PRIMER NOMBRE</p>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="Primer nombre"
+              required
+            />
+          </label>
+          <label for="secondName">
+            <p>SEGUNDO NOMBRE</p>
+            <input
+              type="text"
+              name="secondName"
+              id="secondName"
+              placeholder="Segundo nombre"
+            />
+          </label>
+          <label for="firstLastname">
+            <p>APELLIDO PATERNO</p>
+            <input
+              type="text"
+              name="firstLastname"
+              id="firstLastname"
+              placeholder="Apellido paterno"
+              required
+            />
+          </label>
+          <label for="secondLastname">
+            <p>APELLIDO MATERNO</p>
+            <input
+              type="text"
+              name="secondLastname"
+              id="secondLastname"
+              placeholder="Apellido materno"
+            />
+          </label>
+          <label for="email">
+            <p>CORREO</p>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="napellido@grupocesa.com"
+              required
+            />
+          </label>
+          <label for="prefix">
+            <p>PREFIJO</p>
+            <input
+              type="text"
+              name="prefix"
+              id="prefix"
+              placeholder="+506"
+              required
+            />
+          </label>
+          <label for="phone">
+            <p>TELÉFONO</p>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="2202-2600"
+              required
+            />
+          </label>
+          <label for="cellphone">
+            <p>CELULAR</p>
+            <input
+              type="text"
+              name="cellphone"
+              id="cellphone"
+              placeholder="2202-2600"
+            />
+          </label>
+          <label for="extension">
+            <p>EXTENSIÓN</p>
+            <input
+              type="text"
+              name="extension"
+              id="extension"
+              placeholder="2600"
+            />
+          </label>
+          <label for="tags">
+            <p>TAGS</p>
+            <input
+              type="text"
+              name="tags"
+              id="tags"
+              placeholder="bd, redes, apodo"
+            />
+          </label>
+          <button type="button">Buscar Contacto</button>
+        </form>
+      </section>
+    </div>
+    <section class="menu">
+      <h1>PORTAL CESA</h1>
+      <hr />
+      <ul class="menu__container">
+        <li>
+          <a href="./contactos.html">
+            <i class="fas fa-address-book"></i>
+            <p>DIRECTORIO</p>
+          </a>
+        </li>
+        <li>
+          <a href="./clientes.html">
+            <i class="fas fa-book"></i>
+            <p>CLIENTES</p>
+          </a>
+        </li>
+        <li>
+          <a href="./pedidos.html">
+            <i class="fas fa-user-clock"></i>
+            <p>PEDIDOS DE SERVICIO</p>
+          </a>
+        </li>
+        <li>
+          <a href="./documentos.html">
+            <i class="fas fa-file-alt"></i>
+            <p>DOCUMENTOS</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
