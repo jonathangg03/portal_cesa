@@ -24,7 +24,7 @@ const sendContact = async () => {
     };
 
     const response = await fetch(
-      "http://localhost:3000/api/contact",
+      "https://portal-cesa.vercel.app/api/contact",
       fetchOptions
     );
     const data = await response.json();

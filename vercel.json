@@ -10,10 +10,6 @@
     {
       "src": "/api/contact(.*)",
       "dest": "/backend/api/index.js"
-    },
-    {
-      "src": "/app/contact/new(.*)",
-      "dest": "/backend/public/layout/contactos_agregar.html"
     }
   ]
 }
