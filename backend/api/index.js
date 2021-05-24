@@ -5,6 +5,10 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/contact", contact);
+app.use(
+  "app/contact/new",
+  express.static(__dirname + "../public/layout/contactos_agregar.html")
+);
 
 app.listen(config.api.port, () =>
   console.log(
