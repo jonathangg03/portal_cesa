@@ -25,6 +25,9 @@ const sendContact = async () => {
       fetchOptions
     );
     const data = await response.json();
+    if (data) {
+      window.location = "http://localhost:5500//layout/pedidos.html";
+    }
     console.log(data);
     return data;
   } catch (error) {

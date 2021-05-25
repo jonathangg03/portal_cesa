@@ -28,6 +28,9 @@ const sendContact = async () => {
       fetchOptions
     );
     const data = await response.json();
+    if (data) {
+      window.location = "http://localhost:5500/layout/contactos.html";
+    }
     return data;
   } catch (error) {
     console.log(error.message);
