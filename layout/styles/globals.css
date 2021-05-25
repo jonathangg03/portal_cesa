@@ -13,6 +13,7 @@ body {
   background-color: #f4f8f8;
 }
 
-.menu-separator {
-  padding-left: 200px;
+ul,
+li {
+  list-style: none;
 }
