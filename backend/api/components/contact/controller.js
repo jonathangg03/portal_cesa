@@ -1,3 +1,4 @@
+const { nanoid } = require("nanoid");
 const TABLE = "contact";
 
 module.exports = (store) => {
@@ -7,6 +8,7 @@ module.exports = (store) => {
 
   const upsert = (body, isNew) => {
     const contact = {
+      id: body.id || nanoid(),
       firstName: body.firstName,
       secondName: body.secondName,
       firstLastname: body.firstLastname,
