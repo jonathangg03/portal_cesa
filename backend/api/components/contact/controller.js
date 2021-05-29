@@ -18,7 +18,7 @@ module.exports = (store) => {
       phone: body.phone,
       cellphone: body.cellphone,
       extension: body.extension,
-      tags: body.tags,
+      tag: body.tag || "",
     };
 
     return store.upsert(TABLE, contact, isNew);
