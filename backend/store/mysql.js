@@ -33,16 +33,19 @@ const handleConnection = () => {
 
 handleConnection();
 
-const list = (table) => {
+const list = (table, element) => {
   return new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM ${table}`, (error, data) => {
-      if (error) return reject(error);
-      resolve(data);
-    });
+    connection.query(
+      `SELECT * FROM ${table} ORDER BY ${table}.${element} ASC`,
+      (error, data) => {
+        if (error) return reject(error);
+        resolve(data);
+      }
+    );
   });
 };
 
-const get = (table, id) => {
+const get = (table, id, element) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `SELECT * FROM ${table} WHERE id='${id}'`,

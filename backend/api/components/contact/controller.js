@@ -3,11 +3,11 @@ const TABLE = "contact";
 
 module.exports = (store) => {
   const list = () => {
-    return store.list(TABLE);
+    return store.list(TABLE, "firstName");
   };
 
   const get = (id) => {
-    return store.get(TABLE, id);
+    return store.get(TABLE, id, "firstName");
   };
 
   const upsert = (body, isNew) => {
