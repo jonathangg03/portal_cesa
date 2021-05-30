@@ -64,11 +64,25 @@ const insert = (table, data) => {
   });
 };
 
+const update = (table, data) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `UPDATE ${table} SET ? WHERE id=?`,
+      [data, data.id],
+      (error, data) => {
+        if (error) return reject(error);
+        console.log(data);
+        resolve("Datos actualizados");
+      }
+    );
+  });
+};
+
 const upsert = (table, data, isNew) => {
   if (isNew) {
     return insert(table, data);
   } else {
-    console.log(editar);
+    return update(table, data, isNew);
   }
 };
 

@@ -24,4 +24,11 @@ router.post("/", (req, res) => {
     .catch((error) => response.success(req, res, error));
 });
 
+router.put("/", (req, res) => {
+  controller
+    .upsert(req.body, false)
+    .then((data) => response.success(req, res, data, 200))
+    .catch((error) => response.success(req, res, error));
+});
+
 module.exports = router;
