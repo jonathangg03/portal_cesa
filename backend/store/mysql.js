@@ -42,6 +42,18 @@ const list = (table) => {
   });
 };
 
+const get = (table, id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `SELECT * FROM ${table} WHERE id='${id}'`,
+      (error, data) => {
+        if (error) return reject(error);
+        resolve(data);
+      }
+    );
+  });
+};
+
 const insert = (table, data) => {
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO ${table} SET ?`, data, (error, data) => {
@@ -62,5 +74,6 @@ const upsert = (table, data, isNew) => {
 
 module.exports = {
   list,
+  get,
   upsert,
 };

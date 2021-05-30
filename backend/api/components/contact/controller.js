@@ -6,6 +6,10 @@ module.exports = (store) => {
     return store.list(TABLE);
   };
 
+  const get = (id) => {
+    return store.get(TABLE, id);
+  };
+
   const upsert = (body, isNew) => {
     const contact = {
       id: body.id || nanoid(),
@@ -26,6 +30,7 @@ module.exports = (store) => {
 
   return {
     list,
+    get,
     upsert,
   };
 };
