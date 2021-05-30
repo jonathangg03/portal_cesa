@@ -20,8 +20,13 @@ module.exports = (store) => {
     return store.upsert(TABLE, request, isNew);
   };
 
+  const deleted = (id) => {
+    return store.delete(TABLE, id);
+  };
+
   return {
     list,
     upsert,
+    deleted,
   };
 };

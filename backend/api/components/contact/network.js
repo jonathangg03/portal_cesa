@@ -31,4 +31,11 @@ router.put("/", (req, res) => {
     .catch((error) => response.success(req, res, error));
 });
 
+router.delete("/:id", (req, res) => {
+  controller
+    .deleted(req.params.id)
+    .then((data) => response.success(req, res, data, 200))
+    .catch((error) => response.success(req, res, error));
+});
+
 module.exports = router;

@@ -28,9 +28,14 @@ module.exports = (store) => {
     return store.upsert(TABLE, contact, isNew);
   };
 
+  const deleted = (id) => {
+    return store.deleted(TABLE, id);
+  };
+
   return {
     list,
     get,
     upsert,
+    deleted,
   };
 };

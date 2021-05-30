@@ -89,8 +89,19 @@ const upsert = (table, data, isNew) => {
   }
 };
 
+const deleted = (table, id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`DELETE FROM ${table} WHERE id='${id}'`, (error, data) => {
+      if (error) return reject(error);
+      console.log(data);
+      resolve("Dato eliminado");
+    });
+  });
+};
+
 module.exports = {
   list,
   get,
   upsert,
+  deleted,
 };
