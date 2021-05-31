@@ -45,7 +45,7 @@ const list = (table, element) => {
   });
 };
 
-const get = (table, id, element) => {
+const get = (table, id) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `SELECT * FROM ${table} WHERE id='${id}'`,
