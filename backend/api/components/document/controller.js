@@ -15,9 +15,9 @@ module.exports = (store) => {
     const document = {
       id: body.id || nanoid(),
       name: body.name,
-      size: body.size,
+      size: req.file.size,
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
-      user: body.user,
+      user: "",
       archived: body.arcived || false,
       document: `http://localhost:3000/public/files/${req.file.filename}`,
     };
