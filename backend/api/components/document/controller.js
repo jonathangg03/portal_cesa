@@ -19,8 +19,10 @@ module.exports = (store) => {
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
       user: "",
       archived: body.arcived || false,
-      document: `http://localhost:3000/public/files/${req.file.filename}`,
+      document: req.file.buffer,
     };
+
+    // console.log(req.file.buffer);
 
     return store.upsert(TABLE, document, isNew);
   };
