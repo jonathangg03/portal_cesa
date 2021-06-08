@@ -26,7 +26,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", upload.single("document"), (req, res) => {
   controller
-    .upsert(req, true)
+    .upsert(req.body, req, true)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.success(req, res, error));
 });

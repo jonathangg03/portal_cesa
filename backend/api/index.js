@@ -15,6 +15,7 @@ app.use("/api/contact", contact);
 app.use("/api/request", request);
 app.use("/api/client", client);
 app.use("/api/document", document);
+app.use("/public/", express.static(__dirname + "/public/files"));
 
 app.listen(config.api.port, () =>
   console.log(

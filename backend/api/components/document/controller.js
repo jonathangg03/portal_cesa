@@ -1,16 +1,17 @@
 const { nanoid } = require("nanoid");
-const TABLE = "contact";
+const moment = require("moment");
+const TABLE = "document";
 
 module.exports = (store) => {
   const list = () => {
-    return store.list(TABLE, "firstName");
+    return store.list(TABLE, "name");
   };
 
   const get = (id) => {
-    return store.get(TABLE, id, "firstName");
+    return store.get(TABLE, id, "name");
   };
 
-  const upsert = (body, isNew) => {
+  const upsert = (body, req, isNew) => {
     const document = {
       id: body.id || nanoid(),
       name: body.name,
@@ -18,11 +19,10 @@ module.exports = (store) => {
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
       user: body.user,
       archived: body.arcived || false,
+      document: `http://localhost:3000/public/files/${req.file.filename}`,
     };
 
-    console.log(body);
-
-    //  return store.upsert(TABLE, document, isNew);
+    return store.upsert(TABLE, document, isNew);
   };
 
   const deleted = (id) => {
