@@ -1,7 +1,6 @@
 const express = require("express");
 const response = require("../../../network/response");
 const path = require("path");
-const fs = require("fs");
 const multer = require("multer");
 const controller = require("./index");
 const router = express.Router();
