@@ -11,15 +11,15 @@ module.exports = (store) => {
     return store.get(TABLE, id, "name");
   };
 
-  const upsert = (body, req, isNew) => {
+  const upsert = (body, file, isNew) => {
     const document = {
       id: body.id || nanoid(),
       name: body.name,
-      size: req.file.size,
+      size: file.size,
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
       user: "",
       archived: body.arcived || false,
-      document: req.file.buffer,
+      document: "http://localhost:3000/api/files/" + file.filename,
     };
 
     // console.log(req.file.buffer);
