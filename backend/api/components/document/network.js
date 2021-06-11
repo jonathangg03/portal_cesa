@@ -33,7 +33,7 @@ router.get("/:id", (req, res) => {
     .catch((error) => response.success(req, res, error));
 });
 
-router.post("/", upload.single("document"), (req, res) => {
+router.post("/", upload.single("fileD"), (req, res) => {
   controller
     .upsert(req.body, req.file, true)
     .then((data) => response.success(req, res, data, 200))
