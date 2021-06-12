@@ -14,7 +14,7 @@ module.exports = (store) => {
   const upsert = (body, file, isNew) => {
     const document = {
       id: body.id || nanoid(),
-      name: "pruebas",
+      name: body.name,
       size: file.size,
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
       user: "",
