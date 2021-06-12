@@ -41,6 +41,13 @@ router.post("/", upload.single("fileD"), (req, res) => {
     .catch((error) => response.success(req, res, error));
 });
 
+router.put("/", (req, res) => {
+  controller
+    .update(req.body, false)
+    .then((data) => response.success(req, res, data, 200))
+    .catch((error) => response.success(req, res, error));
+});
+
 router.delete("/:id", (req, res) => {
   controller
     .deleted(req.params.id)

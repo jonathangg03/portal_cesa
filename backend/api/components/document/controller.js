@@ -24,6 +24,19 @@ module.exports = (store) => {
     return store.upsert(TABLE, document, isNew);
   };
 
+  const update = (body, isNew) => {
+    const document = {
+      id: body.id,
+      name: body.name,
+      size: body.size,
+      date: body.date,
+      user: body.user,
+      archived: body.archived,
+      document: body.document,
+    };
+    return store.upsert(TABLE, document, isNew);
+  };
+
   const deleted = (id) => {
     return store.deleted(TABLE, id);
   };
@@ -32,6 +45,7 @@ module.exports = (store) => {
     list,
     get,
     upsert,
+    update,
     deleted,
   };
 };
