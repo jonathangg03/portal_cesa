@@ -14,16 +14,13 @@ module.exports = (store) => {
   const upsert = (body, file, isNew) => {
     const document = {
       id: body.id || nanoid(),
-      name: body.name,
+      name: "pruebas",
       size: file.size,
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
       user: "",
       archived: body.arcived || false,
       document: "http://localhost:3000/api/files/" + file.filename,
     };
-
-    // console.log(req.file.buffer);
-
     return store.upsert(TABLE, document, isNew);
   };
 

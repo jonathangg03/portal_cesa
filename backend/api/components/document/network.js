@@ -34,6 +34,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", upload.single("fileD"), (req, res) => {
+  console.log(req.file);
   controller
     .upsert(req.body, req.file, true)
     .then((data) => response.success(req, res, data, 200))
