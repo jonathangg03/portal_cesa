@@ -99,9 +99,19 @@ const deleted = (table, id) => {
   });
 };
 
+const query = (table, query) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`SELECT * FROM ${table} WHERE ?`, query, (error, data) => {
+      if (error) return reject(error.message);
+      resolve(data[0] || null);
+    });
+  });
+};
+
 module.exports = {
   list,
   get,
   upsert,
   deleted,
+  query,
 };

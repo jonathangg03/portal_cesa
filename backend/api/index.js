@@ -5,6 +5,8 @@ const contact = require("./components/contact/network");
 const request = require("./components/request/network");
 const client = require("./components/client/network");
 const document = require("./components/document/network");
+const user = require("./components/user/network");
+const auth = require("./components/auth/network");
 const app = express();
 
 //cors
@@ -15,6 +17,8 @@ app.use("/api/contact", contact);
 app.use("/api/request", request);
 app.use("/api/client", client);
 app.use("/api/document", document);
+app.use("/api/user", user);
+app.use("/api/auth", auth);
 app.use(
   "/api/files",
   express.static(__dirname + "/components/document/uploads")

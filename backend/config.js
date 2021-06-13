@@ -9,4 +9,5 @@ module.exports = {
     password: process.env.MYSQL_PASSWORD || "tCE8wcd5qR",
     database: process.env.MYSQL_DATABASE || "9rr876KlLn",
   },
+  secret: process.env.SECRET || "showSomeR3sp3ct",
 };
