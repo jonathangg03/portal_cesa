@@ -17,7 +17,7 @@ module.exports = (store) => {
       name: body.name,
       size: file.size,
       date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
-      user: "",
+      user: body.user,
       archived: body.arcived || false,
       document: "http://localhost:3000/api/files/" + file.filename,
     };
