@@ -12,7 +12,8 @@ const app = express();
 
 db(config.db.uri);
 
-//cors
+app.set("port", config.api.port || 3000);
+
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -30,6 +31,6 @@ app.use(
   express.static(__dirname + "/components/document/uploads")
 );
 
-app.listen(config.api.port, () =>
-  console.log(`Listen on port ${config.api.port}`)
+app.listen(app.get("port"), () =>
+  console.log(`Listen on port ${app.get("port")}`)
 );
