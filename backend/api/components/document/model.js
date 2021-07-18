@@ -26,6 +26,10 @@ const mySchema = new Schema({
     required: true,
     type: String,
   },
+  filename: {
+    required: true,
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("document", mySchema);

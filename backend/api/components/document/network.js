@@ -1,5 +1,6 @@
 const express = require("express");
 const response = require("../../../network/response");
+const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const controller = require("./controller");
@@ -50,9 +51,13 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   controller
     .deleted(req.params.id)
-    .then((data) =>
-      response.success(req, res, "Registro eliminado correctamente", 200)
-    )
+    .then((data) => {
+      fs.unlink(`${__dirname}/uploads/${data.filename}`, (err) => {
+        if (err) console.log(`[Delete error]: ${err}`);
+        else console.log("Registro eliminado");
+      });
+      response.success(req, res, "Registro eliminado correctamente", 200);
+    })
     .catch((error) => response.success(req, res, error));
 });
 

@@ -16,6 +16,7 @@ const add = async (body, file) => {
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
     document: "/api/files/" + file.filename,
+    filename: file.filename,
   });
   return document.save();
 };
