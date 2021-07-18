@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const config = require("../config");
-const contact = require("./components/contact/network");
-const request = require("./components/request/network");
-const client = require("./components/client/network");
-const document = require("./components/document/network");
-const user = require("./components/user/network");
-const auth = require("./components/auth/network");
-const db = require("./db");
+const config = require("./config");
+const contact = require("./api/components/contact/network");
+const request = require("./api/components/request/network");
+const client = require("./api/components/client/network");
+const document = require("./api/components/document/network");
+const user = require("./api/components/user/network");
+const auth = require("./api/components/auth/network");
+const db = require("./api/db");
 const app = express();
 
 db(config.db.uri);
