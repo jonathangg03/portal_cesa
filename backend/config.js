@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 module.exports = {
   api: {
     host: process.env.API_HOST,
