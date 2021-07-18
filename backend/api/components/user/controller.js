@@ -1,31 +1,30 @@
-const { nanoid } = require("nanoid");
 const controller = require("../auth/controller");
-const TABLE = "user";
+const Model = require("./model");
 const auth = require("../auth/network");
 
-module.exports = (store) => {
-  const list = () => {
-    return store.list(TABLE, "name");
-  };
+const list = async () => {
+  return Model.find();
+};
 
-  const get = (id) => {
-    return store.get(TABLE, id, "name");
-  };
+const get = async (id) => {
+  return Model.findById(id);
+};
 
-  const upsert = (body, isNew) => {
-    const document = {
-      id: body.id || nanoid(),
-      name: body.name,
-      email: body.email,
-    };
+const add = async (body) => {
+  const newDocument = new Model({
+    name: body.name,
+    email: body.email,
+  });
 
-    auth.upsert({ ...document, password: body.password }, true);
-    return store.upsert(TABLE, document, isNew);
-  };
+  controller
+    .add({ email: body.email, password: body.password })
+    .then((data) => data)
+    .catch((err) => console.log("err: ", err.message));
+  return newDocument.save();
+};
 
-  return {
-    list,
-    get,
-    upsert,
-  };
+module.exports = {
+  list,
+  get,
+  add,
 };

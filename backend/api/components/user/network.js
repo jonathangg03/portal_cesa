@@ -20,9 +20,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
   controller
-    .upsert(req.body, true)
+    .add(req.body)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.success(req, res, error));
 });
