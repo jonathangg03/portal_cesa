@@ -9,14 +9,22 @@ const get = async (id) => {
   return model.findById(id);
 };
 
-const upsert = async (body) => {
+const add = async (body) => {
   const newClient = new model({
-    name: body.name,
+    ...body,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
-    detail: body.detail,
   });
 
   return newClient.save();
+};
+
+const update = async (body, id) => {
+  const filter = await Model.findOneAndUpdate(
+    { _id: id },
+    { _id: id, ...body }
+  );
+
+  return filter;
 };
 
 const deleted = async (id) => {
@@ -26,6 +34,7 @@ const deleted = async (id) => {
 module.exports = {
   list,
   get,
-  upsert,
+  add,
+  update,
   deleted,
 };

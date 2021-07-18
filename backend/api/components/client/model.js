@@ -6,6 +6,10 @@ const mySchema = new Schema({
     required: true,
     type: String,
   },
+  date: {
+    required: true,
+    type: String,
+  },
   detail: {
     required: true,
     type: String,

@@ -19,14 +19,14 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .upsert(req.body, true)
+    .add(req.body)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.error(req, res, error));
 });
 
-router.put("/", (req, res) => {
+router.put("/:id", (req, res) => {
   controller
-    .upsert(req.body, false)
+    .update(req.body, req.params.id)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.error(req, res, error));
 });
