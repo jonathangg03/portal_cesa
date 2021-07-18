@@ -1,37 +1,40 @@
-const { nanoid } = require("nanoid");
-const TABLE = "request";
+const moment = require("moment");
+const Model = require("./model");
 
-module.exports = (store) => {
-  const list = () => {
-    return store.list(TABLE, "client");
-  };
+const list = async () => {
+  return Model.find().sort({ date: 1 });
+};
 
-  const get = (id) => {
-    return store.get(TABLE, id);
-  };
+const get = async (id) => {
+  return Model.findById(id);
+};
 
-  const upsert = (body, isNew) => {
-    const request = {
-      client: body.client,
-      name: body.name,
-      phone: body.phone,
-      date: body.date,
-      attendant: body.attendant,
-      detail: body.detail,
-      id: body.id || nanoid(),
-    };
+const add = async (body) => {
+  const newRequest = new Model({
+    date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
+    ...body,
+  });
 
-    return store.upsert(TABLE, request, isNew);
-  };
+  return newRequest.save();
+};
 
-  const deleted = (id) => {
-    return store.deleted(TABLE, id);
-  };
+const deleted = async (id) => {
+  return Model.findByIdAndDelete(id);
+};
 
-  return {
-    list,
-    get,
-    upsert,
-    deleted,
-  };
+const update = async (body, id) => {
+  const filter = await Model.findOneAndUpdate(
+    { _id: id },
+    { _id: id, ...body }
+  );
+
+  return filter;
+};
+
+module.exports = {
+  list,
+  get,
+  add,
+  update,
+  deleted,
 };

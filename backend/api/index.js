@@ -7,7 +7,10 @@ const client = require("./components/client/network");
 const document = require("./components/document/network");
 const user = require("./components/user/network");
 const auth = require("./components/auth/network");
+const db = require("./db");
 const app = express();
+
+db(config.db.uri);
 
 //cors
 app.use(cors());

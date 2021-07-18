@@ -2,7 +2,7 @@ const express = require("express");
 const response = require("../../../network/response");
 const path = require("path");
 const multer = require("multer");
-const controller = require("./index");
+const controller = require("./controller");
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -34,16 +34,15 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", upload.single("fileD"), (req, res) => {
-  console.log(req.body);
   controller
-    .upsert(req.body, req.file, true)
+    .add(req.body, req.file)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.success(req, res, error));
 });
 
-router.put("/", (req, res) => {
+router.put("/:id", (req, res) => {
   controller
-    .update(req.body, false)
+    .update(req.body, req.params.id)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.success(req, res, error));
 });
@@ -51,7 +50,9 @@ router.put("/", (req, res) => {
 router.delete("/:id", (req, res) => {
   controller
     .deleted(req.params.id)
-    .then((data) => response.success(req, res, data, 200))
+    .then((data) =>
+      response.success(req, res, "Registro eliminado correctamente", 200)
+    )
     .catch((error) => response.success(req, res, error));
 });
 

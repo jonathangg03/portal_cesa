@@ -1,51 +1,42 @@
-const { nanoid } = require("nanoid");
 const moment = require("moment");
-const TABLE = "document";
+const Model = require("./model");
 
-module.exports = (store) => {
-  const list = () => {
-    return store.list(TABLE, "name");
-  };
+const list = async () => {
+  return Model.find();
+};
 
-  const get = (id) => {
-    return store.get(TABLE, id, "name");
-  };
+const get = async (id) => {
+  return Model.findById(id);
+};
 
-  const upsert = (body, file, isNew) => {
-    const document = {
-      id: body.id || nanoid(),
-      name: body.name,
-      size: file.size,
-      date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
-      user: body.user,
-      archived: body.arcived || false,
-      document: "http://localhost:3000/api/files/" + file.filename,
-    };
-    return store.upsert(TABLE, document, isNew);
-  };
+const add = async (body, file) => {
+  const document = new Model({
+    ...body,
+    size: file.size,
+    date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
+    archived: false,
+    document: "/api/files/" + file.filename,
+  });
+  return document.save();
+};
 
-  const update = (body, isNew) => {
-    const document = {
-      id: body.id,
-      name: body.name,
-      size: body.size,
-      date: body.date,
-      user: body.user,
-      archived: body.archived,
-      document: body.document,
-    };
-    return store.upsert(TABLE, document, isNew);
-  };
+const update = async (body, id) => {
+  const filter = await Model.findOneAndUpdate(
+    { _id: id },
+    { _id: id, ...body }
+  );
 
-  const deleted = (id) => {
-    return store.deleted(TABLE, id);
-  };
+  return filter;
+};
 
-  return {
-    list,
-    get,
-    upsert,
-    update,
-    deleted,
-  };
+const deleted = async (id) => {
+  return Model.findByIdAndDelete(id);
+};
+
+module.exports = {
+  list,
+  get,
+  add,
+  update,
+  deleted,
 };

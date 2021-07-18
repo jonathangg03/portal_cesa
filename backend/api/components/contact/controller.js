@@ -1,41 +1,49 @@
-const { nanoid } = require("nanoid");
-const TABLE = "contact";
+const Model = require("./model");
 
-module.exports = (store) => {
-  const list = () => {
-    return store.list(TABLE, "firstName");
+const list = async () => {
+  return Model.find().sort({ firstName: 1 });
+};
+
+const get = (id) => {
+  return Model.findById(id);
+};
+
+const add = async (body) => {
+  const contact = {
+    firstName: body.firstName,
+    secondName: body.secondName,
+    firstLastname: body.firstLastname,
+    secondLastname: body.secondLastname,
+    email: body.email,
+    prefix: body.prefix,
+    phone: body.phone,
+    cellphone: body.cellphone,
+    extension: body.extension,
+    tag: body.tag,
   };
 
-  const get = (id) => {
-    return store.get(TABLE, id, "firstName");
-  };
+  const newContact = new Model(contact);
 
-  const upsert = (body, isNew) => {
-    const contact = {
-      id: body.id || nanoid(),
-      firstName: body.firstName,
-      secondName: body.secondName,
-      firstLastname: body.firstLastname,
-      secondLastname: body.secondLastname,
-      email: body.email,
-      prefix: body.prefix,
-      phone: body.phone,
-      cellphone: body.cellphone,
-      extension: body.extension,
-      tag: body.tag || "",
-    };
+  return newContact.save();
+};
 
-    return store.upsert(TABLE, contact, isNew);
-  };
+const update = async (body, id) => {
+  const filter = await Model.findOneAndUpdate(
+    { _id: id },
+    { _id: id, ...body }
+  );
 
-  const deleted = (id) => {
-    return store.deleted(TABLE, id);
-  };
+  return filter;
+};
 
-  return {
-    list,
-    get,
-    upsert,
-    deleted,
-  };
+const deleted = async (id) => {
+  return Model.findByIdAndDelete(id);
+};
+
+module.exports = {
+  list,
+  get,
+  add,
+  update,
+  deleted,
 };

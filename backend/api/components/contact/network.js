@@ -1,6 +1,6 @@
 const express = require("express");
 const response = require("../../../network/response");
-const controller = require("./index");
+const controller = require("./controller");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -21,15 +21,15 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   controller
-    .upsert(req.body, true)
+    .add(req.body)
     .then((data) => response.success(req, res, data, 200))
     .catch((error) => response.success(req, res, error));
 });
 
-router.put("/", (req, res) => {
+router.put("/:id", (req, res) => {
   controller
-    .upsert(req.body, false)
-    .then((data) => response.success(req, res, data, 200))
+    .update(req.body, req.params.id)
+    .then((data) => response.success(req, res, "Usuario editado", 200))
     .catch((error) => response.success(req, res, error));
 });
 

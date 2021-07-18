@@ -1,7 +1,7 @@
 const { nanoid } = require("nanoid");
 const controller = require("../auth/controller");
 const TABLE = "user";
-const auth = require("../auth/index");
+const auth = require("../auth/network");
 
 module.exports = (store) => {
   const list = () => {

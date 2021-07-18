@@ -2,14 +2,11 @@ require("dotenv").config();
 
 module.exports = {
   api: {
-    host: process.env.API_HOST || "localhost",
-    port: process.env.API_PORT || 3000,
+    host: process.env.API_HOST,
+    port: process.env.API_PORT,
   },
-  mysql: {
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USERNAME,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
+  db: {
+    uri: process.env.DB_URI,
   },
   secret: process.env.SECRET,
 };
