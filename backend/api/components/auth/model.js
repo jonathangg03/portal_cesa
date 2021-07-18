@@ -10,6 +10,10 @@ const mySchema = new Schema({
     required: true,
     type: String,
   },
+  _id: {
+    required: true,
+    type: Schema.ObjectId,
+  },
 });
 
 module.exports = mongoose.model("auth", mySchema);

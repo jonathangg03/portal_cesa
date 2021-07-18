@@ -2,12 +2,13 @@ const bcrypt = require("bcrypt");
 const Model = require("./model");
 const auth = require("../../auth");
 
-const add = async (email, password) => {
-  const newPassword = await bcrypt.hash(password, 10);
+const add = async (body, id) => {
+  const newPassword = await bcrypt.hash(body.password, 10);
 
   const auth = new Model({
-    email,
+    email: body.email,
     password: newPassword,
+    _id: id,
   });
 
   return auth.save();

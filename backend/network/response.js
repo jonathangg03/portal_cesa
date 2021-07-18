@@ -9,7 +9,7 @@ exports.success = (req, res, body, status) => {
 exports.error = (req, res, error, body, status) => {
   console.error(`[response error]: ${error.message}`);
   res.status(status || 500).send({
-    error: body || "Error interno del servidor",
+    error: body.message || "Error interno del servidor",
     status: status || 500,
     body: false,
   });
