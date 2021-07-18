@@ -2,7 +2,6 @@ const express = require("express");
 const response = require("../../../network/response");
 const controller = require("./controller");
 const auth = require("../auth/controller");
-const { nanoid } = require("nanoid");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -22,7 +21,6 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const id = nanoid();
   controller
     .add(req.body)
     .then((data) => {

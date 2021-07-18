@@ -14,26 +14,29 @@ const add = async (body, id) => {
   return auth.save();
 };
 
-// const login = async (body) => {
-//   const user = await store.query(TABLE, {
-//     email: body.email,
-//   });
+const login = async (body) => {
+  if (!body.email || !body.password) {
+    throw Error("Debe ingresar un correo y un email");
+  }
 
-//   console.log(user);
-//   if (user) {
-//     const areEqual = await bcrypt.compare(body.password, user.password);
-//     console.log(areEqual);
-//     if (areEqual) {
-//       return auth.sign({ ...user });
-//     } else {
-//       throw new Error("Correo o contraseña invalidos");
-//     }
-//   } else {
-//     throw new Error("Correo o contraseña invalidos");
-//   }
-// };
+  const userFilter = await Model.find({
+    email: body.email,
+  });
+
+  if (userFilter.length === 0) {
+    throw Error("Correo o contraseña incorrectos");
+  }
+
+  const user = userFilter[0];
+  const areEqual = await bcrypt.compare(body.password, user.password);
+  if (areEqual) {
+    return auth.sign({ ...user });
+  } else {
+    throw Error("Correo o contraseña incorrectos");
+  }
+};
 
 module.exports = {
   add,
-  // login,
+  login,
 };
