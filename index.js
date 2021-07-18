@@ -28,7 +28,5 @@ app.use(
 );
 
 app.listen(config.api.port, () =>
-  console.log(
-    `Escuchando API desde http://${config.api.host}:${config.api.port}`
-  )
+  console.log(`Listen on port ${config.api.port}`)
 );
