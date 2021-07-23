@@ -1,16 +1,16 @@
 const moment = require("moment");
-const model = require("./model");
+const Model = require("./model");
 
 const list = async () => {
-  return model.find().sort({ name: 1 });
+  return Model.find().sort({ name: 1 });
 };
 
 const get = async (id) => {
-  return model.findById(id);
+  return Model.findById(id);
 };
 
 const add = async (body) => {
-  const newClient = new model({
+  const newClient = new Model({
     ...body,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
   });
@@ -28,7 +28,7 @@ const update = async (body, id) => {
 };
 
 const deleted = async (id) => {
-  return model.findByIdAndDelete(id);
+  return Model.findByIdAndDelete(id);
 };
 
 module.exports = {
