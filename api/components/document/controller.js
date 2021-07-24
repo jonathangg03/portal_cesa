@@ -11,12 +11,13 @@ const get = async (id) => {
 };
 
 const add = async (body, file) => {
+  console.log(process.env);
   const document = new Model({
     ...body,
     size: file.size,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
-    document: `https://localhost:${config.api.port}/api/files/${file.filename}`,
+    document: `${config.apiUri}/api/files/${file.filename}`,
     filename: file.filename,
   });
   return document.save();
