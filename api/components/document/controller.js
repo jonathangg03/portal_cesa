@@ -1,5 +1,6 @@
 const moment = require("moment");
 const Model = require("./model");
+const config = require("../../../config");
 
 const list = async () => {
   return Model.find();
@@ -15,7 +16,7 @@ const add = async (body, file) => {
     size: file.size,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
-    document: "/api/files/" + file.filename,
+    document: `http://localhost:${config.api.port}/api/files/${file.filename}`,
     filename: file.filename,
   });
   return document.save();

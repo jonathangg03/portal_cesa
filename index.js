@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const config = require("./config");
 const contact = require("./api/components/contact/network");
 const request = require("./api/components/request/network");
@@ -25,7 +26,7 @@ app.use("/api/user", user);
 app.use("/api/auth", auth);
 app.use(
   "/api/files",
-  express.static(__dirname + "/components/document/uploads")
+  express.static(path.join(__dirname, "api/components/document/uploads"))
 );
 
 app.listen(app.get("port"), () =>
