@@ -16,7 +16,7 @@ const add = async (body, file) => {
     size: file.size,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
-    document: `http://localhost:${config.api.port}/api/files/${file.filename}`,
+    document: `https://localhost:${config.api.port}/api/files/${file.filename}`,
     filename: file.filename,
   });
   return document.save();
