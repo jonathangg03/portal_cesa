@@ -11,7 +11,6 @@ const get = async (id) => {
 };
 
 const add = async (body, file) => {
-  console.log(process.env);
   const document = new Model({
     ...body,
     size: file.size,

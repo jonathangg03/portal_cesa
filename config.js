@@ -7,5 +7,5 @@ module.exports = {
     uri: process.env.DB_URI,
   },
   secret: process.env.SECRET,
-  apiUri: "https://portal-cesa-api.herokuapp.com",
+  apiUri: process.env.API_URI,
 };
