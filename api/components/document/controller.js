@@ -21,6 +21,8 @@ const add = async (body, file) => {
     filename: file.filename,
   });
 
+  console.log(document);
+
   return document.save();
 };
 
@@ -34,17 +36,7 @@ const update = async (body, id) => {
 };
 
 const deleted = async (id) => {
-  Model.findByIdAndDelete(id)
-    .then((data) => {
-      fs.unlink(`${__dirname}/uploads/${data.filename}`, (err) => {
-        if (err) console.log(err);
-        else console.log("Registro eliminado");
-      });
-      return "Registro Eliminado";
-    })
-    .catch((error) => {
-      throw Error(error);
-    });
+  return Model.findByIdAndDelete(id);
 };
 
 module.exports = {
