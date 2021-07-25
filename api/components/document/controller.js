@@ -17,7 +17,7 @@ const add = async (body, file) => {
     size: file.size,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
-    document: `${config.apiUri}/api/files/${file.filename}`,
+    document: `${config.apiUrl}/api/files/${file.filename}`,
     filename: file.filename,
   });
 
@@ -34,12 +34,16 @@ const update = async (body, id) => {
 };
 
 const deleted = async (id) => {
-  return Model.findByIdAndDelete(id)
-    .then(async (data) => {
-      await cloudinary.v2.uploader.destroy(data.public_id);
+  Model.findByIdAndDelete(id)
+    .then((data) => {
+      fs.unlink(`${__dirname}/uploads/${data.filename}`, (err) => {
+        if (err) console.log(err);
+        else console.log("Registro eliminado");
+      });
+      return "Registro Eliminado";
     })
     .catch((error) => {
-      throw new Error(error);
+      throw Error(error);
     });
 };
 
