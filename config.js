@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 module.exports = {
   api: {
     port: process.env.PORT,
@@ -12,4 +12,5 @@ module.exports = {
     name: process.env.CLOUDINARY_NAME,
     secret: process.env.CLOUDINARY_SECRET,
   },
+  apiUri: process.env.API_URI,
 };

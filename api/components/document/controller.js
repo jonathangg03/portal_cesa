@@ -25,7 +25,7 @@ const add = async (body, file) => {
     size: file.size,
     date: moment().format("DD/MM/YYYY - hh:mm:ssa"),
     archived: false,
-    document: "/api/files/" + file.filename,
+    document: `${config.apiUri}/api/files/${file.filename}`,
     filename: file.filename,
     uploadUrl: upload.url,
     public_id: upload.public_id,
