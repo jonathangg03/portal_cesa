@@ -2,13 +2,6 @@ const moment = require("moment");
 const fs = require("fs");
 const config = require("../../../config");
 const Model = require("./model");
-const cloudinary = require("cloudinary");
-
-cloudinary.config({
-  cloud_name: config.cloudinary.name,
-  api_key: config.cloudinary.key,
-  api_secret: config.cloudinary.secret,
-});
 
 const list = async () => {
   return Model.find();
@@ -19,7 +12,6 @@ const get = async (id) => {
 };
 
 const add = async (body, file) => {
-  const upload = await cloudinary.v2.uploader.upload(file.path);
   const document = new Model({
     ...body,
     size: file.size,
@@ -27,17 +19,9 @@ const add = async (body, file) => {
     archived: false,
     document: `${config.apiUri}/api/files/${file.filename}`,
     filename: file.filename,
-    uploadUrl: upload.url,
-    public_id: upload.public_id,
   });
 
-  await document.save();
-
-  fs.unlink(`${__dirname}/uploads/${file.filename}`, (err) => {
-    if (err) console.log(err);
-    else console.log("Registro eliminado");
-  });
-  return "Documento agregado";
+  return document.save();
 };
 
 const update = async (body, id) => {

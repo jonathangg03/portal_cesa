@@ -30,8 +30,6 @@ const mySchema = new Schema({
     required: true,
     type: String,
   },
-  uploadUrl: String,
-  public_id: String,
 });
 
 module.exports = mongoose.model("document", mySchema);
