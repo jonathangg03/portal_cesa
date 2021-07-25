@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend para el portal de CESA",
-  "main": "./api/index.js",
+  "main": "./index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.26.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

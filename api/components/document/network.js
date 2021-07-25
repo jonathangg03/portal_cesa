@@ -38,7 +38,7 @@ router.post("/", upload.single("fileD"), (req, res) => {
   controller
     .add(req.body, req.file)
     .then((data) => response.success(req, res, data, 200))
-    .catch((error) => response.error(req, res, error));
+    .catch((error) => response.error(req, res, error, error));
 });
 
 router.put("/:id", (req, res) => {
