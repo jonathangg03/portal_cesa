@@ -7,22 +7,22 @@ const { secret } = require('../../../config')
 const router = express.Router()
 require('../../auth/basic')
 
-router.post('/', (req, res, next) => {
-  try {
-    passport.authenticate('basic-strategy', (error, user, info) => {
+router.get('/', async (req, res) => {
+  const user = await controller.get(req.body.email)
+  res.send(user)
+})
+
+router.post('/sign-in', async (req, res, next) => {
+  passport.authenticate('basic-strategy', (error, user, info) => {
+    try {
       if (error) {
-        response.error(req, res, error)
-        next(error)
+        return next(error)
       }
 
-      if (info) {
-        response.error(req, res, info.message, info.message)
-        next(info.message)
-      }
-
+      console.log(error)
       req.login(user, { session: false }, (err) => {
         if (err) {
-          next(err)
+          return next(err)
         }
 
         const payload = {
@@ -30,20 +30,26 @@ router.post('/', (req, res, next) => {
           sub: user._id
         }
 
-        response.success(
-          req,
-          res,
-          {
-            token: jwt.sign(payload, secret, {
-              expiresIn: '1h'
-            }),
-            user: user
-          },
-          200
-        )
+        const token = jwt.sign(payload, secret, {
+          expiresIn: '1h'
+        })
+
+        res.status(200).json({ token, user: { ...payload } })
       })
-    })(req, res, next)
-  } catch (error) {
+    } catch (error) {
+      return next(error.message)
+    }
+  })(req, res, next)
+})
+
+router.post('/newUser', async (req, res) => {
+  try {
+    const newUser = await controller.add(req.body)
+    if (newUser) {
+      console.log(newUser)
+      response.success(req, res, newUser, 201)
+    }
+  } catch (e) {
     response.error(req, res, error)
   }
 })

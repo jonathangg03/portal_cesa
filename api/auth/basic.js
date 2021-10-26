@@ -1,29 +1,25 @@
 const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
-const bcrypt = require('bcrypt')
-const user = require('../components/auth/controller')
+const bcrypt = require('bcryptjs')
+const Users = require('../components/auth/model')
 
-const basic = new BasicStrategy(async (username, password, done) => {
+const Basic = new BasicStrategy(async (username, password, done) => {
   try {
-    const userLogin = user.get(username)
-    const areEqual = await bcrypt.compare(password, userLogin.password)
+    const user = await Users.findOne({ email: username })
 
-    if (!userLogin) {
-      console.log('No se encontró un usuario con ese email')
-      return done(null, false, { message: 'Usuario o contraseña incorrectos' })
+    if (user.length < 0) {
+      return done(null, false)
     }
 
-    if (!areEqual) {
-      console.log('Contraseña incorrecta')
-      return done(null, false, { message: 'Usuario o contraseña incorrectos' })
+    if (!(await bcrypt.compare(password, user.password))) {
+      return done(null, false)
     }
 
-    delete userLogin.password
-    done(null, userLogin)
+    delete user.password
+    return done(null, user)
   } catch (error) {
-    console.log('Error durante la validación')
-    done(error)
+    return done(error)
   }
 })
 
-module.exports = passport.use('basic-strategy', basic)
+passport.use('basic-strategy', Basic)
